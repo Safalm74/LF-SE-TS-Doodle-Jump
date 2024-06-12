@@ -3,6 +3,7 @@ import playerSprite from "../sprites/player";
 import stateConstants from "../constants/stateConstants";
 import Platform from "./platform";
 import canvasConstants from "../constants/canvasConstants";
+import gameoverPage from "../pages/gameover";
 interface Iplayer {
     position: Point;
     width: number;
@@ -11,6 +12,7 @@ interface Iplayer {
     speedy:number;
     lookDirection:number;
     prevDirection:number;
+    score:number;
 }
 
 export default class Player implements Iplayer {
@@ -21,6 +23,7 @@ export default class Player implements Iplayer {
     speedy: number=0;
     lookDirection: number=0;
     prevDirection: number=this.lookDirection;
+    score: number=0;
     constructor(
         p: Point,
         w: number,
@@ -45,6 +48,9 @@ export default class Player implements Iplayer {
             this.position.y,
             this.width,
             this.height);
+        if (this.position.y>canvasConstants.windowHeight){
+            gameoverPage(this.score);
+        }
 
     }
     move(left: boolean) {

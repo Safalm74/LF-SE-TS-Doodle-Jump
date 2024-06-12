@@ -2,6 +2,8 @@ import mainConstants from "../constants/mainConstants";
 import canvasInitialize from "./canvasGameloop";
 
 export default function loadHomePage() {
+    mainConstants.inGame=false;
+    console.log('Home');
     if (mainConstants.rootDiv) {
         mainConstants.rootDiv.innerHTML = '';
         //setting home page

@@ -1,11 +1,13 @@
 type MainConstants={
     rootDiv:HTMLElement | null;
     inGame:boolean;
+    highScore:number;
 }
 
 const mainConstants: MainConstants={
     rootDiv:document.getElementById('app'),
     inGame:false,
+    highScore:0
 }
 
 if (mainConstants.rootDiv){

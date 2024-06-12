@@ -8,13 +8,13 @@ type PlayerSprite={
     sprite:HTMLImageElement,
     width:number,
     height:number,
-    position:Point[]
+    position:Point[],
 }
 const playerSprite:PlayerSprite={
     sprite:Sprite,
     width:92,
     height:92,
-    position:[new Point(0,0),new Point(92,0),new Point(182,0)]
+    position:[new Point(0,0),new Point(92,0),new Point(182,0)],
 }
 
 export default playerSprite;

@@ -1,6 +1,11 @@
 import mainConstants from "../constants/mainConstants";
 import loadHomePage from "./home";
 export default function gameoverPage(score: number) {
+    console.log('game over')
+    mainConstants.inGame=false;
+    if(mainConstants.highScore<score){
+        mainConstants.highScore=score;
+    }
     const wrapper = document.createElement('div');
     wrapper.style.width = `${window.innerWidth * 0.2}px`;
     wrapper.style.height = `${window.innerWidth * 0.2}px`;
@@ -14,11 +19,11 @@ export default function gameoverPage(score: number) {
     wrapper.style.borderRadius = "5px";
 
 
-    const gameOverMsg = document.createElement('h1');
+    const gameOverMsg = document.createElement('h2');
     gameOverMsg.innerHTML = "GAME OVER"
 
 
-    const scoreMsg = document.createElement('h1');
+    const scoreMsg = document.createElement('h3');
     scoreMsg.innerHTML = `Score:${score}`
 
     const goHomeBtn = document.createElement('button');
@@ -32,8 +37,12 @@ export default function gameoverPage(score: number) {
         }
     );
 
+    const highScoreMsg = document.createElement('h3');
+    highScoreMsg.innerHTML = `Best Score:${mainConstants.highScore}`
+
     wrapper.appendChild(gameOverMsg);
     wrapper.appendChild(scoreMsg);
+    wrapper.appendChild(highScoreMsg);
     wrapper.appendChild(goHomeBtn);
 
 
