@@ -19,7 +19,7 @@ const platformConstant: PlatformConstant={
         height),
     width:width,
     height:height,
-    speed:2
+    speed:1
 
 }
 export default platformConstant;

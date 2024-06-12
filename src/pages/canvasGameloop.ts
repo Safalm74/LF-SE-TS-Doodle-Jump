@@ -29,19 +29,23 @@ function createPlatform() {
         ,platformConstant.position.y) ,
         platformConstant.width,
         platformConstant.height,
-        1
+        platformConstant.speed
     )
     platformArray.push(platformObj)
 }
 
-setInterval(
-    () => {
-        if (platformArray.length<10){
-        createPlatform();
-        }
-    },
-    2000
-);
+function callSetInterval(){
+    setInterval(
+        () => {
+            if (platformArray.length<10){
+            createPlatform();
+            }
+        },
+        2000/platformConstant.speed
+    );
+}
+//callSetInterval()
+
 const player1: Player=new Player(
     new Point
     (getRandomInt(0, canvasConstants.windowWidth-platformConstant.width)
@@ -60,14 +64,16 @@ function initiateInitialPositions(){
             ,canvasConstants.windowHeight*(i)/5) ,
             platformConstant.width,
             platformConstant.height,
-            1
+            0
         ));
     }
     player1.position.x=platformArray[2].position.x+platformArray[2].width/2;
     player1.position.y=platformArray[2].position.y-platformArray[2].height*2;
 }
-
+let speed=0;
 function gameMainloop() {
+    speed=5*(canvasConstants.windowHeight-player1.position.y)/canvasConstants.windowHeight
+
     ctx.clearRect(
         0,
         0,
@@ -77,21 +83,26 @@ function gameMainloop() {
         (obj) => {
             obj.update();
             obj.draw(ctx);
+            obj.speed=speed;
         }
     );
     platformArray=platformArray.filter(
         (obj)=>{
+
             if (obj.position.y<canvasConstants.windowHeight){
                 return true;
             }
             else{
-                //player1.score++;
                 return false;
             }
         }
     );
+    if (platformArray[platformArray.length-1].position.y>100){
+        createPlatform();
+    }
     player1.draw(ctx);
     player1.dropAndBounce(platformArray);
+    
     requestAnimationFrame(gameMainloop);
 }
 

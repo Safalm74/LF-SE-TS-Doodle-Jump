@@ -1,9 +1,9 @@
 import loadHomePage from "./pages/home";
-//import canvasInitialize from "./pages/canvasGameloop";
+import canvasInitialize from "./pages/canvasGameloop";
 import { player1 } from "./pages/canvasGameloop";
 
-loadHomePage();
-//canvasInitialize();
+//loadHomePage();
+canvasInitialize();
 
 window.addEventListener(
   'keypress',

@@ -99,13 +99,16 @@ export default class Player implements Iplayer {
                }
             }
         );
-        
+        if (this.position.y <=canvasConstants.windowHeight*0.2){
+            this.speedy=0;
+        }
         this.speedy=this.speedy+g
         this.position.y += this.speedy
 
         if (stateConstants.doodleFalling && collided){
             stateConstants.doodleFalling=false;
-            this.speedy=-5;
+            this.speedy=-5*(this.position.y)/canvasConstants.windowHeight
+            ;
             this.prevDirection=this.lookDirection;
             this.lookDirection=2;
             

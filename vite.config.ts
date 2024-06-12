@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    base: '/LF-SE-TS-Image-carousel/',
+    base: '/LF-SE-TS-Doodle-Jump/',
     build: {
         rollupOptions: {
         },
