@@ -1,10 +1,10 @@
-//import loadHomePage from "./pages/home";
+import loadHomePage from "./pages/home";
 import canvasConstants from "./constants/canvasConstants";
-import canvasInitialize from "./pages/canvasGameloop";
+//import canvasInitialize from "./pages/canvasGameloop";
 import { player1,canvasMain } from "./pages/canvasGameloop";
 
-//loadHomePage();
-canvasInitialize();
+loadHomePage();
+//canvasInitialize();
 
 window.addEventListener(
   'keypress',

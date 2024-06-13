@@ -10,6 +10,7 @@ import Power from "../modules/powers";
 const canvasMain: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement;
 const scoreTopMsg = document.createElement('h1');
 scoreTopMsg.style.backgroundColor = "wheat";
+scoreTopMsg.style.width=`${canvasConstants.windowWidth}`;
 
 function loadDOM() {
     if (mainConstants.rootDiv) {
@@ -45,7 +46,8 @@ function createPlatform() {
         platformConstant.height,
         platformConstant.speed
     )
-    if (!player1.onPower){
+    const probPower=getRandomInt(1,100)
+    if (!player1.onPower && (probPower%2==0 &&probPower<50)){
         createPower(platformObj);
     }
     platformArray.push(platformObj)
