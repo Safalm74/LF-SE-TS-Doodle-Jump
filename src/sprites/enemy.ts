@@ -1,10 +1,9 @@
 import mainConstants from "../constants/mainConstants";
-import canvasInitialize from "./canvasGameloop";
-import scoreBoard from "./scoreboard";
+import loadHomePage from "../pages/home";
 
-export default function loadHomePage() {
+export default function showsscore() {
     mainConstants.inGame=false;
-    console.log('Home');
+    console.log('ScoreBoard');
     if (mainConstants.rootDiv) {
         mainConstants.rootDiv.innerHTML = '';
         //setting home page
@@ -23,31 +22,20 @@ export default function loadHomePage() {
         startBtn.style.left = "50%";
         startBtn.style.transform = "translate(-50%,-50%)";
         startBtn.value = "Start Game";
-        startBtn.innerHTML = "Start Game";
+        startBtn.innerHTML = "Return";
         startBtn.className = "start-btn";
         startBtn.addEventListener(
             'click',
             () => {
-                canvasInitialize();
+                loadHomePage();
                 mainConstants.inGame = true;
             }
         );
-        const scoreBtn = document.createElement('button');
-        scoreBtn.style.position = "absolute";
-        scoreBtn.style.top = "60%";
-        scoreBtn.style.left = "50%";
-        scoreBtn.style.transform = "translate(-50%,-50%)";
-        scoreBtn.value = "Score Board";
-        scoreBtn.innerHTML = "Score Board";
-        scoreBtn.className = "start-btn";
-        scoreBtn.addEventListener(
-            'click',
-            () => {
-                scoreBoard();
-            }
-        );
         //appending start btn to homepage
-        homepage.appendChild(scoreBtn);
+
+        const controlsMsg = document.createElement('p');
+        controlsMsg.innerHTML = `Press'w' or click of left &nbsp 
+                                side to move left And`
         homepage.appendChild(startBtn);
         mainConstants.rootDiv.appendChild(homepage);
 

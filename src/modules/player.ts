@@ -15,6 +15,7 @@ interface Iplayer {
     score: number;
     onPower: boolean;
     activatedPower:any;
+    hp:number;
 }
 
 export default class Player implements Iplayer {
@@ -28,6 +29,7 @@ export default class Player implements Iplayer {
     score: number = 0;
     onPower: boolean = false;
     activatedPower: any=null;
+    hp: number=100;
     constructor(
         p: Point,
         w: number,
@@ -86,6 +88,12 @@ export default class Player implements Iplayer {
         
 
 
+    }
+    getDamage(damage:number){
+        this.hp -=damage;
+        if (this.hp<0){
+            gameoverPage(this.score);
+        }
     }
     dropAndBounce(platformArray: Platform[]) {
         let collided = false;

@@ -6,6 +6,7 @@ export default function gameoverPage(score: number) {
     if(mainConstants.highScore<score){
         mainConstants.highScore=score;
     }
+    mainConstants.allScore.push(score);
     const wrapper = document.createElement('div');
     wrapper.style.width = `${window.innerWidth * 0.2}px`;
     wrapper.style.height = `${window.innerWidth * 0.2}px`;
