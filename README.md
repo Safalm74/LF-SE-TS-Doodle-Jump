@@ -16,6 +16,7 @@
 - pause/play functionality
 - smooth animation for falling and jumping using acceleration
 - Is playable on mobile phones 
+- difficulties with score
 
 #### How it works?
 1. Accelerated movement:
