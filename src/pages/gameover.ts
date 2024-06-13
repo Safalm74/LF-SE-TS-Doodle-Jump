@@ -2,9 +2,9 @@ import mainConstants from "../constants/mainConstants";
 import loadHomePage from "./home";
 export default function gameoverPage(score: number) {
     console.log('game over')
-    mainConstants.inGame=false;
-    if(mainConstants.highScore<score){
-        mainConstants.highScore=score;
+    mainConstants.inGame = false;
+    if (mainConstants.highScore < score) {
+        mainConstants.highScore = score;
     }
     mainConstants.allScore.push(score);
     const wrapper = document.createElement('div');

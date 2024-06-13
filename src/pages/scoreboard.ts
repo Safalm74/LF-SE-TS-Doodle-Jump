@@ -1,9 +1,8 @@
 import mainConstants from "../constants/mainConstants";
-import canvasInitialize from "./canvasGameloop";
 import loadHomePage from "./home";
 
 export default function scoreBoard() {
-    mainConstants.inGame=false;
+    mainConstants.inGame = false;
     console.log('ScoreBoard');
     if (mainConstants.rootDiv) {
         mainConstants.allScore.sort();
@@ -31,15 +30,15 @@ export default function scoreBoard() {
         //appending start btn to homepage
 
         const scoreBoardTable = document.createElement('table');
-        scoreBoardTable.style.color="white";
-        let scoreBoardMsg=`<tr><td>S.N.</td><td> Score</td></tr>`
+        scoreBoardTable.style.color = "white";
+        let scoreBoardMsg = `<tr><td>S.N.</td><td> Score</td></tr>`
         mainConstants.allScore.forEach(
-            (score,ind)=>{
-                scoreBoardMsg += `<tr><td>${ind+1}</td><td>${score}</td></tr>`
+            (score, ind) => {
+                scoreBoardMsg += `<tr><td>${ind + 1}</td><td>${score}</td></tr>`
             }
         );
-        scoreBoardTable.innerHTML=scoreBoardMsg
-  
+        scoreBoardTable.innerHTML = scoreBoardMsg
+
         homepage.appendChild(scoreBoardTable);
         homepage.appendChild(startBtn);
         mainConstants.rootDiv.appendChild(homepage);

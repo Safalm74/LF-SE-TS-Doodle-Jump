@@ -10,7 +10,7 @@ import Power from "../modules/powers";
 const canvasMain: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement;
 const scoreTopMsg = document.createElement('h1');
 scoreTopMsg.style.backgroundColor = "wheat";
-scoreTopMsg.style.width=`${canvasConstants.windowWidth}`;
+scoreTopMsg.style.width = `${canvasConstants.windowWidth}`;
 
 function loadDOM() {
     if (mainConstants.rootDiv) {
@@ -22,12 +22,12 @@ function loadDOM() {
 }
 
 let platformArray: Platform[] = [];
-let powerArray: Power[]=[]
-function createPower(platformObj:Platform){
-    const powerObj= new Power(
+let powerArray: Power[] = []
+function createPower(platformObj: Platform) {
+    const powerObj = new Power(
         new Point(
-            platformObj.position.x+platformObj.width/2,
-            platformObj.position.y-54+platformObj.height),
+            platformObj.position.x + platformObj.width / 2,
+            platformObj.position.y - 54 + platformObj.height),
 
         17,
         54,
@@ -46,8 +46,9 @@ function createPlatform() {
         platformConstant.height,
         platformConstant.speed
     )
-    const probPower=getRandomInt(1,100)
-    if (!player1.onPower && (probPower%2==0 &&probPower<50)){
+    //generating powerups with probability of 25%
+    const probPower = getRandomInt(1, 100)
+    if (!player1.onPower && (probPower % 2 == 0 && probPower < 50)) {
         createPower(platformObj);
     }
     platformArray.push(platformObj)
@@ -108,13 +109,13 @@ function gameMainloop() {
         }
     );
     powerArray.forEach(
-        (obj)=>{
+        (obj) => {
             obj.update();
             obj.draw(ctx);
             obj.speed = speed;
         }
     );
-    
+
     powerArray.forEach((obj) => {
         if (
             obj.position.y + obj.height >= player1.position.y &&
@@ -125,46 +126,46 @@ function gameMainloop() {
         ) {
             player1.onPower = true;
             obj.isActive = true;
-            player1.activatedPower=obj;
-            powerArray= powerArray.filter(
+            player1.activatedPower = obj;
+            powerArray = powerArray.filter(
                 (obj) => {
-                    return (obj===player1.activatedPower);
-        
+                    return (obj === player1.activatedPower);
+
                 }
             );
             setTimeout(
-                ()=>{
-                    player1.onPower=false;
-                    powerArray=[];
-                    
+                () => {
+                    player1.onPower = false;
+                    powerArray = [];
+
                 }
-                ,1500);
+                , 1500);
         }
     });
-
-    if (platformArray[platformArray.length - 1].position.y > 100) {
+    //  generating platform height at random
+    if (platformArray[platformArray.length - 1].position.y > getRandomInt(90,150) ) {
         createPlatform();
     }
 
     player1.draw(ctx);
     player1.dropAndBounce(platformArray);
     player1.powerup();
-    
-    
-    scoreTopMsg.innerHTML=`Score: ${player1.score}`
-    if (mainConstants.inGame){
-    requestAnimationFrame(gameMainloop);
+
+
+    scoreTopMsg.innerHTML = `Score: ${player1.score}`
+    if (mainConstants.inGame && mainConstants.resumeGame) {
+        requestAnimationFrame(gameMainloop);
     }
 }
-function reset(){
-    player1.position=new Point
-            (getRandomInt(0, canvasConstants.windowWidth - platformConstant.width)
-                , canvasConstants.windowHeight / 2);
-    player1.score=0;
-    
+function reset() {
+    player1.position = new Point
+        (getRandomInt(0, canvasConstants.windowWidth - platformConstant.width)
+            , canvasConstants.windowHeight / 2);
+    player1.score = 0;
+
 }
 const ctx = canvasMain.getContext('2d') as CanvasRenderingContext2D;
-export { player1 ,canvasMain}
+export { player1, canvasMain, gameMainloop }
 export default function canvasInitialize() {
     reset();
     console.log('ingame')

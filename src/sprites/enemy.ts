@@ -2,7 +2,7 @@ import mainConstants from "../constants/mainConstants";
 import loadHomePage from "../pages/home";
 
 export default function showsscore() {
-    mainConstants.inGame=false;
+    mainConstants.inGame = false;
     console.log('ScoreBoard');
     if (mainConstants.rootDiv) {
         mainConstants.rootDiv.innerHTML = '';

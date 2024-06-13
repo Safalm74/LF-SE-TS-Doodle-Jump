@@ -3,7 +3,7 @@ import canvasInitialize from "./canvasGameloop";
 import scoreBoard from "./scoreboard";
 
 export default function loadHomePage() {
-    mainConstants.inGame=false;
+    mainConstants.inGame = false;
     console.log('Home');
     if (mainConstants.rootDiv) {
         mainConstants.rootDiv.innerHTML = '';

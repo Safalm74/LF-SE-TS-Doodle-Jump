@@ -1,13 +1,13 @@
-interface Ipoint{
-    x:number;
-    y:number;
+interface Ipoint {
+    x: number;
+    y: number;
 }
 
-export default class Point implements Ipoint{
+export default class Point implements Ipoint {
     x;
     y;
-    constructor(x:number,y:number){
-        this.x=x;
-        this.y=y;
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
     }
 }

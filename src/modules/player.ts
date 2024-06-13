@@ -14,8 +14,8 @@ interface Iplayer {
     prevDirection: number;
     score: number;
     onPower: boolean;
-    activatedPower:any;
-    hp:number;
+    activatedPower: any;
+    hp: number;
 }
 
 export default class Player implements Iplayer {
@@ -28,8 +28,8 @@ export default class Player implements Iplayer {
     prevDirection: number = this.lookDirection;
     score: number = 0;
     onPower: boolean = false;
-    activatedPower: any=null;
-    hp: number=100;
+    activatedPower: any = null;
+    hp: number = 100;
     constructor(
         p: Point,
         w: number,
@@ -62,14 +62,15 @@ export default class Player implements Iplayer {
     move(left: boolean) {
         clearInterval(stateConstants.lateralInterval);
         let adder: number;
-        left ? () => { adder = 1 } : adder = -1;
-
         if (left) {
             adder = 1;
             this.lookDirection = 1;
         } else {
             adder = -1;
             this.lookDirection = 0;
+        }
+        if (this.speedx < 30) {
+            this.speedx += 10;
         }
         this.position.x += adder * this.speedx;
         if (this.position.x <= 0) {
@@ -80,18 +81,18 @@ export default class Player implements Iplayer {
         }
     }
     powerup() {
-        if (this.onPower){
-            this.activatedPower!.position.x=this.position.x;
-            this.activatedPower!.position.y=this.position.y;
-            this.score +=1;
+        if (this.onPower) {
+            this.activatedPower!.position.x = this.position.x;
+            this.activatedPower!.position.y = this.position.y;
+            this.score += 1;
         }
-        
+
 
 
     }
-    getDamage(damage:number){
-        this.hp -=damage;
-        if (this.hp<0){
+    getDamage(damage: number) {
+        this.hp -= damage;
+        if (this.hp < 0) {
             gameoverPage(this.score);
         }
     }
@@ -99,7 +100,7 @@ export default class Player implements Iplayer {
         let collided = false;
         const g = 0.08;
 
-       
+
 
 
 
@@ -117,8 +118,8 @@ export default class Player implements Iplayer {
         */
         platformArray.forEach(
             (obj) => {
-                if (this.onPower){
-                    obj.speed=15;
+                if (this.onPower) {
+                    obj.speed = 10;
                 }
                 if (
                     obj.position.y + obj.height >= this.position.y &&
@@ -141,8 +142,6 @@ export default class Player implements Iplayer {
             this.speedy = -5 *
                 (this.position.y)
                 / canvasConstants.windowHeight;
-
-            this.prevDirection = this.lookDirection;
             this.lookDirection = 2;
             this.score++;
 
@@ -152,7 +151,6 @@ export default class Player implements Iplayer {
         else {
             if (this.speedy >= 0) {
                 stateConstants.doodleFalling = true;
-                this.lookDirection = this.prevDirection;
             }
         }
     }
